@@ -3,31 +3,51 @@ import './App.css';
 
 class App extends Component {
 	state = {
-		posts: [],
-		loading: true,
-		comments: [],
+		timer: 0
+	};
+
+	stopTimer = () => {
+		clearInterval(this.myInterval);
+	};
+
+	startTimer = () => {
+		this.myInterval = setInterval(() => {
+			this.setState(prev => {
+				return {
+					timer: prev.timer + 1
+				};
+			});
+		}, 1000);
 	};
 
 	componentDidMount() {
-		console.log('componentDidMount');
-		fetch('https://jsonplaceholder.typicode.com/posts')
-			.then((data) => data.json())
-			.then((data) =>
-				this.setState({
-					posts: data,
-					loading: false,
-				})
-			);
+		if (localStorage.timerValue) {
+			this.setState({ timer: +localStorage.timerValue });
+			this.startTimer();
+		} else {
+			this.setState({ timer: 0 });
+			this.startTimer();
+		}
 	}
-	componentDidUpdate() {
-		console.log('componentDidUpdate');
+
+	componentWillUnmount() {
+		clearInterval(this.myInterval);
 	}
 
 	render() {
+		window.onbeforeunload = () => {
+			localStorage.timerValue = this.state.timer;
+		};
+
 		return (
 			<div className='App'>
-				<ul className='post-container'>{this.state.loading ? <span>Loading...</span> : this.state.posts.map((post) => <li key={post.id}>{post.title}</li>)}</ul>
+				<div className="nav">
+					<button onClick={this.stopTimer}>stop</button>
+					<button onClick={this.startTimer}>start</button>
+				</div>
+				<div className="timer">{this.state.timer}</div>
 			</div>
+
 		);
 	}
 }
