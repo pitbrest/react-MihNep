@@ -12,13 +12,23 @@ class App extends Component {
 	emailRef = React.createRef();
 
 	cardNumberHandler = (e) => {
+		// this.setState({ card: e.target.value });
+		// setTimeout(() => {
+		// 	if (this.state.card.length === 6) {
+		// 		this.emailRef.current.focus();
+		// 	}
+		// }, 100);
+
+
 		this.setState(() => {
 			return { card: e.target.value };
 		}, () => { if (this.state.card.length === 6) { this.emailRef.current.focus(); } });
+
 	};
 
 	emailHandler = (e) => {
 		this.setState({ email: e.target.value });
+		console.log(this.state.card);
 	};
 
 	checkboxHandler = (e) => {
@@ -29,7 +39,7 @@ class App extends Component {
 
 	componentDidMount() {
 		this.cardnumberRef.current.focus();
-	}
+	};
 
 	checking = () => {
 		const isValidEmail = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/.test(this.state.email);
