@@ -1,21 +1,10 @@
-.App {
-	max-width: 768px;
-	margin: 100px auto;	
+.nav-wrapper {
+  padding: 0 1.5rem;
 }
-.content {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	flex-direction: column;
-	gap: 30px;
+.main-container {
+  min-height: calc(100vh - 114px);
+  padding: 1.5rem 0;
 }
-.info {
-	display: flex;
-	gap: 20px;
-}
-input {
-	padding: 10px;
-}
-button {
-	padding: 10px 20px;
+.page-footer {
+  padding-top: 0;
 }
