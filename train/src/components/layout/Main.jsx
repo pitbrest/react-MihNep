@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ItemCard } from '../ItemCard/ItemCard';
 import { searchByTitle } from '../../api/OMDbAPI';
+import './Main.css';
 
 
 export default class Main extends Component {
@@ -27,7 +28,7 @@ export default class Main extends Component {
 
     return (
       <main className='main-container'>
-        <div className="row">
+        <div className="cards-conrainer">
           {data.map(item => {
             const { Title, Poster } = item;
             return (
