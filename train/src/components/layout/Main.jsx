@@ -1,40 +1,26 @@
 import React, { Component } from 'react';
-import { ItemCard } from '../ItemCard/ItemCard';
-import { searchByTitle } from '../../api/OMDbAPI';
 import './Main.css';
+
+import { searchByTitle } from '../../api/OMDbAPI';
+import { Movies } from '../Movies/Movies';
 
 
 export default class Main extends Component {
   state = {
-    data: null,
-    error: false
+    movies: null
   };
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     searchByTitle('sun')
-      .then(data => {
-        this.setState({ data, isLoading: false });
-      });
-
+      .then(movies => this.setState({ movies }));
   }
 
   render() {
-    const { data } = this.state;
-
-    if (!data) {
-      return <div style={{ textAlign: 'center' }}>Loading ...</div>;
-    }
+    const { movies } = this.state;
 
     return (
-      <main className='main-container'>
-        <div className="cards-conrainer">
-          {data.map(item => {
-            const { Title, Poster } = item;
-            return (
-              <ItemCard title={Title} imgUrl={Poster} />);
-          })}
-        </div>
+      <main className='main-container container'>
+        {!movies ? <h2 style={{ textAlign: 'center' }}>Loading ...</h2> : <Movies movies={movies} />}
       </main>
     );
   }

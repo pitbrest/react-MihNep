@@ -4,11 +4,6 @@ body {
 .nav-wrapper {
   padding: 0 1.5rem;
 }
-.main-container {
-  min-height: calc(100vh - 114px);
-  padding: 1.5rem 0;
-}
-
 footer .container {
   display: flex;
   align-items: center;
