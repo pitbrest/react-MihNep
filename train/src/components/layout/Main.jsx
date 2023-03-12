@@ -3,6 +3,8 @@ import './Main.css';
 
 import { searchByTitle } from '../../api/OMDbAPI';
 import { Movies } from '../Movies/Movies';
+import { Preloader } from '../preloader/Preloader';
+import { SearchPanel } from '../SearchPanel/SearchPanel';
 
 
 export default class Main extends Component {
@@ -20,7 +22,8 @@ export default class Main extends Component {
 
     return (
       <main className='main-container container'>
-        {!movies ? <h2 style={{ textAlign: 'center' }}>Loading ...</h2> : <Movies movies={movies} />}
+        <SearchPanel />
+        {!movies ? <Preloader /> : <Movies movies={movies} />}
       </main>
     );
   }
