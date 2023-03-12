@@ -13,7 +13,7 @@ class SearchPanel extends Component {
 
     return (
       <div className="row" >
-        <div className="input-field col s6">
+        <div className="input-field col s12">
           <input id="search" type="text" className="validate" placeholder='search' style={{ letterSpacing: '1.8px' }}
             value={this.state.searchValue} onChange={this.inputHandler} />
         </div>
