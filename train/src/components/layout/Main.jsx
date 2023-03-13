@@ -9,20 +9,40 @@ import { SearchPanel } from '../SearchPanel/SearchPanel';
 
 export default class Main extends Component {
   state = {
-    movies: null
+    movies: null,
+    searchValue: 'sun',
+    searchParams: {
+      all: true,
+      movies: false,
+      series: false
+    }
+  };
+
+  searchValueHandler = (value) => {
+    this.setState({ searchValue: value });
   };
 
   componentDidMount() {
-    searchByTitle('sun')
+    const searchValue = this.state.searchValue;
+
+    searchByTitle(searchValue)
       .then(movies => this.setState({ movies }));
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchValue !== this.state.searchValue && this.state.searchValue.length > 2) {
+      searchByTitle(this.state.searchValue)
+        .then(movies => this.setState({ movies }));
+    }
+  }
+
 
   render() {
     const { movies } = this.state;
 
     return (
       <main className='main-container container'>
-        <SearchPanel />
+        <SearchPanel searchValueHandler={this.searchValueHandler} />
         {!movies ? <Preloader /> : <Movies movies={movies} />}
       </main>
     );

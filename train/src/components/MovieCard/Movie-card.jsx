@@ -8,7 +8,7 @@ function MovieCard(props) {
     <div className='col s2'>
       <div className="card" id={id}>
         <div className="card-image waves-effect waves-block waves-light">
-          <img className="activator" src={imgUrl} alt='movie-img' />
+          <img className="activator" src={imgUrl !== "N/A" ? imgUrl : `https://placehold.co/293x414?text=${title}`} alt='movie-img' />
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">{title}</span>
