@@ -1,6 +1,6 @@
 const responseTemplate = 'http://www.omdbapi.com/?apikey=f5431db0&s=';
 
-const searchByTitle = async function (title, searchParam) {
+const searchByTitle = async function (title = 'happiness', searchParam) {
   try {
     const response = await fetch(responseTemplate + title);
     const result = await response.json();

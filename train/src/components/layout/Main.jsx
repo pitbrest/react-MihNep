@@ -14,17 +14,14 @@ export default class Main extends Component {
     searchParam: 'All'
   };
 
+  componentDidMount() {
+    this.updateMovies();
+  }
+
   updateMovies = (searchValue) => {
     searchByTitle(searchValue)
       .then(movies => this.setState({ movies }));
   };
-
-  componentDidMount() {
-    const searchValue = this.state.searchValue;
-
-    searchByTitle(searchValue)
-      .then(movies => this.setState({ movies }));
-  }
 
   render() {
     const { movies } = this.state;

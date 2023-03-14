@@ -40,7 +40,10 @@ class SearchPanel extends Component {
 
         <div className="input-field col s12">
           <input id="search" type="text" className="validate" placeholder='search' style={{ letterSpacing: '1.8px' }}
-            value={searchValue} onChange={this.inputHandler} onKeyDown={this.onInputSubmit} />
+            value={searchValue}
+            onChange={this.inputHandler}
+            onKeyDown={this.onInputSubmit}
+            autoFocus />
           <button className='btn search-btn' onClick={this.onSearchSubmit}>search</button>
 
           <form action="#">
