@@ -3,3 +3,10 @@
   align-items: center;
   justify-content: space-between;
 }
+.search-btn {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  background: teal;
+  letter-spacing: 0.1em;
+}

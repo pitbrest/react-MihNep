@@ -11,15 +11,12 @@ export default class Main extends Component {
   state = {
     movies: null,
     searchValue: 'sun',
-    searchParams: {
-      all: true,
-      movies: false,
-      series: false
-    }
+    searchParam: 'All'
   };
 
-  searchValueHandler = (value) => {
-    this.setState({ searchValue: value });
+  updateMovies = (searchValue) => {
+    searchByTitle(searchValue)
+      .then(movies => this.setState({ movies }));
   };
 
   componentDidMount() {
@@ -29,20 +26,12 @@ export default class Main extends Component {
       .then(movies => this.setState({ movies }));
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.searchValue !== this.state.searchValue && this.state.searchValue.length > 2) {
-      searchByTitle(this.state.searchValue)
-        .then(movies => this.setState({ movies }));
-    }
-  }
-
-
   render() {
     const { movies } = this.state;
 
     return (
       <main className='main-container container'>
-        <SearchPanel searchValueHandler={this.searchValueHandler} />
+        <SearchPanel updateMovies={this.updateMovies} />
         {!movies ? <Preloader /> : <Movies movies={movies} />}
       </main>
     );
