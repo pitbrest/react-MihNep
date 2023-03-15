@@ -10,26 +10,55 @@ import { SearchPanel } from '../SearchPanel/SearchPanel';
 export default class Main extends Component {
   state = {
     movies: null,
-    searchValue: 'sun',
-    searchParam: 'All'
+    searchParam: 'all',
+    isLoading: true
   };
 
   componentDidMount() {
     this.updateMovies();
   }
 
-  updateMovies = (searchValue) => {
-    searchByTitle(searchValue)
-      .then(movies => this.setState({ movies }));
+
+
+  updateMovies = (title, type) => {
+    this.setState({ isLoading: true });
+    const { searchParam } = this.state;
+
+    switch (searchParam) {
+      case 'movie':
+        searchByTitle(title, 'movies')
+          .then(movies => this.setState({ movies, isLoading: false }));
+        break;
+      case 'series':
+        searchByTitle(title, 'series')
+          .then(movies => this.setState({ movies, isLoading: false }));
+        break;
+      default:
+        searchByTitle(title, type)
+          .then(movies => this.setState({ movies, isLoading: false }));
+        break;
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.searchParam !== prevState.searchParam) {
+      this.updateMovies();
+    }
+  }
+
+  setSearchParam = (param) => {
+    this.setState({ searchParam: param });
   };
 
   render() {
-    const { movies } = this.state;
+    const { movies, isLoading } = this.state;
 
     return (
       <main className='main-container container'>
-        <SearchPanel updateMovies={this.updateMovies} />
-        {!movies ? <Preloader /> : <Movies movies={movies} />}
+        <SearchPanel
+          updateMovies={this.updateMovies}
+          setSearchParam={this.setSearchParam} />
+        {isLoading || movies === undefined ? <Preloader /> : <Movies movies={movies} />}
       </main>
     );
   }

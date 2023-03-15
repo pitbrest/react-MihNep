@@ -34,6 +34,7 @@ class SearchPanel extends Component {
 
   render() {
     const searchValue = this.state.searchValue;
+    const { setSearchParam } = this.props;
 
     return (
       <div className="row" >
@@ -49,19 +50,26 @@ class SearchPanel extends Component {
           <form action="#">
             <p>
               <label>
-                <input className="with-gap" name="group1" type="radio" defaultChecked />
+                <input className="with-gap" name="group1" type="radio"
+                  value={'all'}
+                  onChange={(e) => setSearchParam(e.target.value)}
+                  defaultChecked />
                 <span>All</span>
               </label>
             </p>
             <p>
               <label>
-                <input className="with-gap" name="group1" type="radio" />
+                <input className="with-gap" name="group1" type="radio"
+                  value={'movies'}
+                  onChange={(e) => setSearchParam(e.target.value)} />
                 <span>Movies only</span>
               </label>
             </p>
             <p>
               <label>
-                <input className="with-gap" name="group1" type="radio" />
+                <input className="with-gap" name="group1" type="radio"
+                  value={'series'}
+                  onChange={(e) => setSearchParam(e.target.value)} />
                 <span>Series only</span>
               </label>
             </p>
