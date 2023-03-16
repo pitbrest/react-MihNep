@@ -11,20 +11,24 @@ class SearchPanel extends Component {
   };
 
   onInputSubmit = (e) => {
-    const { updateMovies } = this.props;
+    const { setSearchValue } = this.props;
     const searchValue = this.state.searchValue;
 
     if (e.key === "Enter") {
-      return searchValue.length > 2 ? (updateMovies(searchValue), this.clearSearchInput()) :
+      return searchValue.length > 2 ?
+        (setSearchValue(searchValue),
+          this.clearSearchInput()) :
         alert('search value will have more then 2 letters');
     }
   };
 
   onSearchSubmit = () => {
-    const { updateMovies } = this.props;
+    const { setSearchValue } = this.props;
     const searchValue = this.state.searchValue;
 
-    return searchValue.length > 2 ? (updateMovies(searchValue), this.clearSearchInput()) :
+    return searchValue.length > 2 ?
+      (setSearchValue(searchValue),
+        this.clearSearchInput()) :
       alert('search value will have more then 2 letters');
   };
 
@@ -60,7 +64,7 @@ class SearchPanel extends Component {
             <p>
               <label>
                 <input className="with-gap" name="group1" type="radio"
-                  value={'movies'}
+                  value={'movie'}
                   onChange={(e) => setSearchParam(e.target.value)} />
                 <span>Movies only</span>
               </label>

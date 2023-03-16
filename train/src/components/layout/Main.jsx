@@ -9,8 +9,9 @@ import { SearchPanel } from '../SearchPanel/SearchPanel';
 
 export default class Main extends Component {
   state = {
-    movies: null,
+    searchValue: 'happiness',
     searchParam: 'all',
+    movies: null,
     isLoading: true
   };
 
@@ -18,33 +19,36 @@ export default class Main extends Component {
     this.updateMovies();
   }
 
-
-
-  updateMovies = (title, type) => {
+  updateMovies = () => {
     this.setState({ isLoading: true });
-    const { searchParam } = this.state;
+    const { searchValue, searchParam } = this.state;
 
     switch (searchParam) {
       case 'movie':
-        searchByTitle(title, 'movies')
+        searchByTitle(searchValue, 'movie')
           .then(movies => this.setState({ movies, isLoading: false }));
         break;
       case 'series':
-        searchByTitle(title, 'series')
+        searchByTitle(searchValue, 'series')
           .then(movies => this.setState({ movies, isLoading: false }));
         break;
       default:
-        searchByTitle(title, type)
+        searchByTitle(searchValue)
           .then(movies => this.setState({ movies, isLoading: false }));
         break;
     }
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.searchParam !== prevState.searchParam) {
+    if (this.state.searchValue !== prevState.searchValue ||
+      this.state.searchParam !== prevState.searchParam) {
       this.updateMovies();
     }
   }
+
+  setSearchValue = (value) => {
+    this.setState({ searchValue: value });
+  };
 
   setSearchParam = (param) => {
     this.setState({ searchParam: param });
@@ -56,7 +60,7 @@ export default class Main extends Component {
     return (
       <main className='main-container container'>
         <SearchPanel
-          updateMovies={this.updateMovies}
+          setSearchValue={this.setSearchValue}
           setSearchParam={this.setSearchParam} />
         {isLoading || movies === undefined ? <Preloader /> : <Movies movies={movies} />}
       </main>
