@@ -6,65 +6,70 @@ import { Movies } from '../Movies/Movies';
 import { Preloader } from '../preloader/Preloader';
 import { SearchPanel } from '../SearchPanel/SearchPanel';
 
-
 export default class Main extends Component {
-  state = {
-    searchValue: 'happiness',
-    searchParam: 'all',
-    movies: null,
-    isLoading: true
-  };
+	state = {
+		searchValue: 'happiness',
+		searchParam: 'all',
+		movies: null,
+		isLoading: true,
+	};
 
-  componentDidMount() {
-    this.updateMovies();
-  }
+	componentDidMount() {
+		this.updateMovies();
+	}
 
-  updateMovies = () => {
-    this.setState({ isLoading: true });
-    const { searchValue, searchParam } = this.state;
+	componentDidUpdate(prevProps, prevState) {
+		if (
+			this.state.searchValue !== prevState.searchValue ||
+			this.state.searchParam !== prevState.searchParam
+		) {
+			this.updateMovies();
+		}
+	}
 
-    switch (searchParam) {
-      case 'movie':
-        searchByTitle(searchValue, 'movie')
-          .then(movies => this.setState({ movies, isLoading: false }));
-        break;
-      case 'series':
-        searchByTitle(searchValue, 'series')
-          .then(movies => this.setState({ movies, isLoading: false }));
-        break;
-      default:
-        searchByTitle(searchValue)
-          .then(movies => this.setState({ movies, isLoading: false }));
-        break;
-    }
-  };
+	updateMovies = () => {
+		this.setState({ isLoading: true });
+		const { searchValue, searchParam } = this.state;
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.searchValue !== prevState.searchValue ||
-      this.state.searchParam !== prevState.searchParam) {
-      this.updateMovies();
-    }
-  }
+		switch (searchParam) {
+			case 'movie':
+				searchByTitle(searchValue, 'movie').then((movies) =>
+					this.setState({ movies, isLoading: false })
+				);
+				break;
+			case 'series':
+				searchByTitle(searchValue, 'series').then((movies) =>
+					this.setState({ movies, isLoading: false })
+				);
+				break;
+			default:
+				searchByTitle(searchValue).then((movies) =>
+					this.setState({ movies, isLoading: false })
+				);
+				break;
+		}
+	};
 
-  setSearchValue = (value) => {
-    this.setState({ searchValue: value });
-  };
+	setSearchValue = (value) => {
+		this.setState({ searchValue: value });
+	};
+	setSearchParam = (param) => {
+		this.setState({ searchParam: param });
+	};
 
-  setSearchParam = (param) => {
-    this.setState({ searchParam: param });
-  };
+	render() {
+		const { movies, isLoading } = this.state;
 
-  render() {
-    const { movies, isLoading } = this.state;
-
-    return (
-      <main className='main-container container'>
-        <SearchPanel
-          setSearchValue={this.setSearchValue}
-          setSearchParam={this.setSearchParam} />
-        {isLoading || movies === undefined ? <Preloader /> : <Movies movies={movies} />}
-      </main>
-    );
-  }
+		return (
+			<main className='main-container container'>
+				<SearchPanel
+					setSearchValue={this.setSearchValue}
+					setSearchParam={this.setSearchParam}
+				/>
+				<div className='container'>
+					{isLoading ? <Preloader /> : <Movies movies={movies} />}
+				</div>
+			</main>
+		);
+	}
 }
-

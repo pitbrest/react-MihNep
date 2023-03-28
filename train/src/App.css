@@ -1,5 +1,6 @@
 body {
   user-select: none;
+  padding: 0 calc(20px - (100vw - 100%)) 0 0;
 }
 .nav-wrapper {
   padding: 0 1.5rem;

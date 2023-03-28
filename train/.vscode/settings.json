@@ -1,0 +1,9 @@
+{
+  "prettier.singleAttributePerLine": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.bracketSameLine": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

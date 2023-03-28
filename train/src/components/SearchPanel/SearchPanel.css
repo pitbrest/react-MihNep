@@ -1,22 +1,28 @@
+input.validate {
+	color: #0a6834;
+}
 .input-field form {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 }
 .input-field form p {
-  margin-right: 2rem;
+	margin-right: 2rem;
 }
 .input-field form p span {
-  color: teal;
-  font-weight: 700;
+	color: teal;
+	font-weight: 700;
 }
 .input-field form p span:before {
-  border-color: rgb(0, 74, 74) !important;
+	border-color: rgb(0, 74, 74) !important;
+}
+.input-field input:first-child {
+	font-weight: 700;
 }
 .search-btn {
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  background: teal;
-  letter-spacing: 0.1em;
+	position: absolute;
+	top: 0;
+	right: 1rem;
+	background: teal;
+	letter-spacing: 0.1em;
 }
