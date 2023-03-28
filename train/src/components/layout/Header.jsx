@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Header() {
-	console.log('go');
 	return (
 		<nav>
 			<div className='nav-wrapper teal'>
