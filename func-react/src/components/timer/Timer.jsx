@@ -30,6 +30,11 @@ function Timer() {
 		setTimerValue(0);
 	};
 
+	// useEffect(() => {
+	// 	if (localStorage.timerValue && +localStorage.timerValue !== timerValue)
+	// 		setTimerValue(+localStorage.timerValue);
+	// }, []);
+
 	useEffect(() => {
 		localStorage.timerValue = timerValue;
 	}, [timerValue]);
