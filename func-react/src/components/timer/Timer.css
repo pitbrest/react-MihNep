@@ -2,10 +2,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 5%;
 }
-.timer {
-	display: inline-block;
 
-	margin: 0 20px;
-	padding: 10px 20px;
+.timer-container button {
+	width: 100px;
 }

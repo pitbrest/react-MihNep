@@ -1,59 +1,58 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Timer.css';
 
-const setDefaultTimerValue = () => {
-	return localStorage.timerValue ? +localStorage.timerValue : 0;
+const applyDefaultTimerValue = () => {
+	return localStorage.timerCountValue ? +localStorage.timerCountValue : 0;
 };
 
-function Timer() {
-	const [timerValue, setTimerValue] = useState(setDefaultTimerValue());
+export default function Timer() {
+	const [count, setCount] = useState(applyDefaultTimerValue());
 	const [isCounting, setIsCounting] = useState(false);
 
-	const timerIdRef = useRef(null);
+	const timerRef = useRef(null);
+
+	const countingStatusHandler = () => setIsCounting(!isCounting);
 
 	const startTimer = () => {
-		setIsCounting(!isCounting);
+		countingStatusHandler();
 
-		timerIdRef.current = setInterval(() => {
-			setTimerValue((prevValue) => {
-				return prevValue + 1;
-			});
+		timerRef.current = setInterval(() => {
+			setCount((prevCount) => prevCount + 1);
 		}, 1000);
 	};
 
 	const stopTimer = () => {
-		clearInterval(timerIdRef.current);
-		setIsCounting(!isCounting);
+		clearInterval(timerRef.current);
+		countingStatusHandler();
 	};
 
 	const resetTimer = () => {
-		setTimerValue(0);
+		setCount(0);
 	};
 
-	// useEffect(() => {
-	// 	if (localStorage.timerValue && +localStorage.timerValue !== timerValue)
-	// 		setTimerValue(+localStorage.timerValue);
-	// }, []);
-
 	useEffect(() => {
-		localStorage.timerValue = timerValue;
-	}, [timerValue]);
+		localStorage.timerCountValue = count;
+		return () => {
+			console.log('unm');
+			clearInterval(timerRef.current);
+		};
+	}, [count]);
 
 	return (
 		<div className='timer-container'>
 			<button
-				className='btn btn-success'
+				className={isCounting ? 'btn btn-danger' : 'btn btn-success'}
 				onClick={isCounting ? stopTimer : startTimer}>
-				{isCounting ? 'stop' : 'start'}
+				{isCounting ? 'stopTimer' : 'startTimer'}
 			</button>
-			<span className='timer rounded bg-warning'>{timerValue}</span>
+			<span className='timer p-3 m-3 border border-2  border-primary'>
+				{count}
+			</span>
 			<button
-				className='btn btn-danger'
+				className='btn btn btn-warning'
 				onClick={resetTimer}>
 				reset
 			</button>
 		</div>
 	);
 }
-
-export { Timer };
