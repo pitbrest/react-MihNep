@@ -32,11 +32,11 @@ export default function Timer() {
 
 	useEffect(() => {
 		localStorage.timerCountValue = count;
-		return () => {
-			console.log('unm');
-			clearInterval(timerRef.current);
-		};
 	}, [count]);
+
+	useEffect(() => {
+		return () => clearInterval(timerRef.current);
+	}, []);
 
 	return (
 		<div className='timer-container'>
