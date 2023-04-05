@@ -1,11 +1,22 @@
+:root {
+	--main-bg-color: teal;
+	--main-font-color: #000000;
+	--second-font-color: #ffffff;
+	--link-hover-color: #71ffff;
+	--linc-hover-transition: 0.3s linear;
+}
 body {
 	user-select: none;
-	font-size: 1.3rem;
 }
 a {
-	color: black;
+	color: var(--main-font-color);
 	text-decoration: none;
+	transition: color var(--linc-hover-transition);
 }
 a:hover {
-	color: #71ffff;
+	color: var(--link-hover-color);
+	transition: color var(--linc-hover-transition);
+}
+main {
+	min-height: calc(100vh - 123px - 0.5rem);
 }

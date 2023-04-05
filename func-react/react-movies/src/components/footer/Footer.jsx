@@ -3,7 +3,7 @@ import './Footer.css';
 
 function Footer() {
 	return (
-		<div className='footer-container'>
+		<footer className='footer-container'>
 			<span>©</span>
 			<span>{new Date().getFullYear()}</span>
 			<p className='p-0 m-0'>
@@ -14,7 +14,7 @@ function Footer() {
 					pitbrest
 				</a>
 			</p>
-		</div>
+		</footer>
 	);
 }
 
