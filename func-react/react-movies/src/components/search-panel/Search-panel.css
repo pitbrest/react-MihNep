@@ -2,7 +2,7 @@
 	position: relative;
 }
 .search-block input {
-	width: 90%;
+	width: 95%;
 	font-weight: 500;
 }
 .search-block input:focus {
@@ -21,6 +21,10 @@
 	background-color: rgb(0, 112, 112) !important;
 	border-color: rgb(0, 112, 112) !important;
 	color: rgb(255, 255, 255);
+}
+.search-block input:first-child {
+	color: teal;
+	letter-spacing: 2px;
 }
 .filter-block input {
 	border: 2px solid teal;
