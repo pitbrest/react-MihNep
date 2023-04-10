@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchPanel from '../search-panel/Search-panel';
 import MoviesContainer from '../movies/Movies';
 import searchByTitle from '../OMDb-API/Omdb-api';
+import ModalWindow from '../modal/Modal';
 
 function Main() {
 	const [movies, setMovies] = useState(null);
@@ -12,8 +13,8 @@ function Main() {
 
 	useEffect(() => {
 		setMovies('');
-		searchByTitle(searchValue, currentSearchOption).then((response) => {
-			setMovies(response);
+		searchByTitle(searchValue, currentSearchOption).then((result) => {
+			setMovies(result);
 		});
 	}, [searchValue, currentSearchOption]);
 
@@ -25,6 +26,7 @@ function Main() {
 				searchOption={searchOption}
 				setSearchOption={setSearchOption}
 			/>
+			<ModalWindow />
 			<MoviesContainer movies={movies} />
 		</main>
 	);
