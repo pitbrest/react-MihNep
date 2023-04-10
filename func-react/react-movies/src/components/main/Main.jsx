@@ -5,24 +5,24 @@ import searchByTitle from '../OMDb-API/Omdb-api';
 
 function Main() {
 	const [movies, setMovies] = useState(null);
-	const [searchValue, setSearchValue] = useState('');
+	const [searchValue, setSearchValue] = useState('happiness');
 	const [searchOption, setSearchOption] = useState('All');
 
+	const currentSearchOption = searchOption === 'All' ? '' : searchOption;
+
 	useEffect(() => {
-		searchByTitle().then((response) => {
+		setMovies('');
+		searchByTitle(searchValue, currentSearchOption).then((response) => {
 			setMovies(response);
 		});
-	}, []);
-
-	const inputSearchHandler = (e) => {
-		setSearchValue(e.target.value);
-	};
+	}, [searchValue, currentSearchOption]);
 
 	return (
 		<main className='container'>
 			<SearchPanel
 				searchValue={searchValue}
 				setSearchValue={setSearchValue}
+				searchOption={searchOption}
 				setSearchOption={setSearchOption}
 			/>
 			<MoviesContainer movies={movies} />

@@ -1,0 +1,18 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.card img {
+	max-height: 400px;
+	margin-bottom: 1rem;
+}
+.card-body {
+	flex: 0 1 auto;
+}
+
+.movie-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
