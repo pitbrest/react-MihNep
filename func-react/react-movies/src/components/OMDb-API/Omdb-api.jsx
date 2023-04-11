@@ -9,9 +9,7 @@ const searchByTitle = async function (searchValue = 'happiness', type = '') {
 			return result;
 		}
 		return result.Search;
-	} catch (error) {
-		console.error(error.message);
-	}
+	} catch (error) {}
 };
 
 export default searchByTitle;
