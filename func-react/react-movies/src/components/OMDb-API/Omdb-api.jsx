@@ -1,4 +1,4 @@
-const baseUrl = 'http://www.omdbapi.com/?apikey=f5431db0&s=';
+const baseUrl = 'https://www.omdbapi.com/?apikey=f5431db0&s=';
 
 const searchByTitle = async function (searchValue = 'happiness', type = '') {
 	try {
