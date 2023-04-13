@@ -19,7 +19,7 @@ export function ItemsWithContext(props) {
 	};
 
 	return (
-		<MyContext.Provider value={(items, deleteBook)}>
+		<MyContext.Provider value={[items, deleteBook]}>
 			{props.children}
 		</MyContext.Provider>
 	);

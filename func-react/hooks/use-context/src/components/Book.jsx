@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MyContext } from './MyContext';
 
 export function Book(props) {
+	const [, handler] = useContext(MyContext);
+
 	return (
-		<>
-			<h5 key={props.id}>{props.name}</h5>
-			<p>{props.pages}</p>
-		</>
+		<div
+			className='book'
+			onClick={() => handler(props.id)}>
+			<span key={props.id}>{props.name}</span>
+			<span>{props.pages}</span>
+		</div>
 	);
 }
