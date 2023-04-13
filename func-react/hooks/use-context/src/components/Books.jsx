@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import { MyContext } from './MyContext';
+import { myContext } from './MyContext';
 import { Book } from './Book';
 
 export function Books() {
-	const [items] = useContext(MyContext);
+	const { books } = useContext(myContext);
 
 	return (
-		<>
-			{items.books.map((i) => (
+		<div className='flex justify-center align-middle flex-wrap gap-4 mt-20'>
+			{books.map((book) => (
 				<Book
-					key={i.id}
-					{...i}
+					key={book.id}
+					{...book}
 				/>
 			))}
-		</>
+		</div>
 	);
 }

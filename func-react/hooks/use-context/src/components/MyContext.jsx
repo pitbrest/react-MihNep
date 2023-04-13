@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 
-export const MyContext = React.createContext();
+export const myContext = createContext();
 
-export function ItemsWithContext(props) {
-	const [items, setItems] = useState({
-		books: [
-			{ id: 1, name: 'birds', pages: '55' },
-			{ id: 2, name: 'sun', pages: '97' },
-		],
-		songs: [
-			{ id: 3, name: 'someSong' },
-			{ id: 4, name: 'anotherSong' },
-		],
-	});
+export function ElWithContext(props) {
+	const [books, setBooks] = useState([
+		{ id: 1, name: 'Black Jack', year: 1999 },
+		{ id: 2, name: 'King Artur', year: 2022 },
+		{ id: 3, name: 'Sun Rise', year: 1852 },
+		{ id: 4, name: 'Good Morning', year: 1685 },
+		{ id: 5, name: 'My Birthday', year: 1988 },
+	]);
 
-	const deleteBook = (id) => {
-		setItems({ ...items, books: items.books.filter((book) => book.id !== id) });
+	const addBook = (book) => {
+		setBooks([...books, book]);
+	};
+	const removeBook = (id) => {
+		setBooks(books.filter((book) => book.id !== id));
+	};
+
+	const value = {
+		books,
+		addBook,
+		removeBook,
 	};
 
 	return (
-		<MyContext.Provider value={[items, deleteBook]}>
-			{props.children}
-		</MyContext.Provider>
+		<myContext.Provider value={value}>{props.children}</myContext.Provider>
 	);
 }
