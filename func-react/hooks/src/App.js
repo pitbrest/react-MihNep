@@ -74,7 +74,6 @@ function App() {
 					className='bg-teal-400 px-3 py-2'
 					onClick={() => {
 						dispatch({ type: 'Inc_r', step: 50 });
-						console.log('hi');
 					}}>
 					+
 				</button>
