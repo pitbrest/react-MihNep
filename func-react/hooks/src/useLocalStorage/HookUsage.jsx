@@ -1,8 +1,8 @@
-import React from 'react';
-import { useLocalStorage } from './useLocalStorage';
+import React, { useState } from 'react';
+import { UseLocalStorage } from './UseLocalStorage';
 
 function HookUsage() {
-	const [count, setCount] = useLocalStorage(0, 'count');
+	const [count, setCount] = UseLocalStorage(0, 'value');
 
 	return (
 		<div>
@@ -14,9 +14,6 @@ function HookUsage() {
 			</button>
 			<p className='font-medium'>
 				Current <span className='ml-7'>{count}</span>
-			</p>
-			<p className='font-medium'>
-				Previous <span className='ml-5'></span>
 			</p>
 		</div>
 	);
