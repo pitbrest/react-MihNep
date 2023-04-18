@@ -27,6 +27,10 @@ function Timer() {
 		clearInterval(ref.current);
 	};
 
+	const resetTimer = () => {
+		return setCount(0);
+	};
+
 	useEffect(() => {
 		localStorage.setItem('count', count);
 	}, [count]);
@@ -43,6 +47,11 @@ function Timer() {
 				onClick={isCounting ? stopCounting : startCounting}>
 				{isCounting ? 'stop' : 'start'}
 				<div className='absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl'></div>
+			</button>
+			<button
+				className='group rounded-xl h-10 w-20 font-semibold text-lg text-white tracking-widest relative overflow-hidden bg-slate-500  active:bg-slate-400 ml-2'
+				onClick={resetTimer}>
+				reset
 			</button>
 			<p className='text-center mt-10 text-2xl'>{count}</p>
 		</div>
