@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Timer from './timerRefactoring/Timer';
+import Timer from './timerRefactoringFull/Timer';
 
 function App() {
 	return (
