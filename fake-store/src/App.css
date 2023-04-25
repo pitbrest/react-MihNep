@@ -7,9 +7,13 @@ body {
 main {
   min-height: calc(100vh - 114px);
 }
-
 nav{
   padding: 0 1rem;
+}
+nav .brand-logo {
+  left: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
 .page-footer {
   margin: 0;
