@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import './GoodItem.css';
 
 function GoodItem(props) {
-  const { url, title, description, price } = props;
+  const { url, title, description, price, addItemToOrder } = props;
 
   return (
     <div className="row good-item hoverable">
@@ -17,7 +17,10 @@ function GoodItem(props) {
           </div>
           <div className="card-action">
             <span className='price'>{price} руб</span>
-            <button type='button' className="waves-effect waves-light btn right" >Купить</button>
+            <button
+              type='button'
+              className="waves-effect waves-light btn right"
+              onClick={() => addItemToOrder({ ...props })} >Купить</button>
           </div>
         </div>
       </div>
@@ -29,7 +32,8 @@ GoodItem.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  price: PropTypes.number.isRequired,
+  addItemToOrder: PropTypes.func.isRequired
 };
 
 
