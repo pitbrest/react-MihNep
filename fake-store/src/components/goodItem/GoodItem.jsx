@@ -4,6 +4,8 @@ import './GoodItem.css';
 function GoodItem(props) {
   const { id, url, title, description, price, addItemToOrder, checkOrder } = props;
 
+  const btnStatus = checkOrder(id);
+
   return (
     <div className="row good-item hoverable">
       <div>
@@ -19,8 +21,12 @@ function GoodItem(props) {
           <div className="card-action">
             <span className='price'>{price} руб</span>
             <button type='button'
-              className={checkOrder(id) ? "waves-effect waves-light btn right" : "waves-effect waves-purple btn right"}
-              onClick={() => addItemToOrder({ ...props })} >Купить</button>
+              className={btnStatus ? "btn red darken-4" : "btn"}
+              onClick={() => {
+                addItemToOrder({ ...props });
+                checkOrder(id);
+                console.log('go');
+              }} >Купить</button>
           </div>
         </div>
       </div>

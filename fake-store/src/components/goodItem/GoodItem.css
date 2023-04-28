@@ -6,8 +6,11 @@
   flex-direction: column;   
   margin: 0;
 }
-.card-content {
+.card .card-content {
   flex: 0 1 190px;
+  padding: 10px;
+  max-height: 140px;
+  overflow-y: auto;
 }
 .card-action {
   display: flex;
