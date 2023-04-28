@@ -10,34 +10,42 @@ function Shop() {
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState([]);
 
-  const addItemToOrder = (prop) => {
-    const { id, ...rest } = prop;
-    const filteredOrders = order.filter(item => item.id === id);
+  const checkOrder = (id) => order.filter(item => item.id === id).length;
 
-    if (filteredOrders.length) {
-      const transformedArr = order.map(item => {
-        const checkedItem = item;
-        if (checkedItem.id === id) {
-          checkedItem.count += 1;
-        }
-        return checkedItem;
+  const addItemToOrder = (prop) => {
+    const { id, url, title, description, price } = prop;
+    const newOrderItem = {
+      id,
+      quantity: 1,
+      url,
+      title,
+      description,
+      price,
+    };
+    const checkingOrder = order.filter(item => item.id === id).length;
+
+    if (checkingOrder) {
+      const changedOrder = order.map(item => {
+        let changedItem = item;
+        if (changedItem.id === id) { changedItem = { ...changedItem, quantity: changedItem.quantity + 1 }; };
+        return changedItem;
       });
-      setOrder(transformedArr);
+      setOrder(changedOrder);
     } else {
-      setOrder([...order, { id, count: 1, value: rest }]);
+      setOrder([...order, newOrderItem]);
     }
   };
 
   const content = !goods.length ? <h3>Nothing here ...</h3> :
     goods.map((item) => (
-      <GoodItem
-        key={item.mainId}
+      <GoodItem key={item.mainId}
         id={item.mainId}
         url={item.displayAssets[0].background}
         title={item.displayName}
         description={item.displayDescription}
         price={item.price.finalPrice}
         addItemToOrder={addItemToOrder}
+        checkOrder={checkOrder}
       />
     ));
 
@@ -61,7 +69,7 @@ function Shop() {
     </>
 
   );
-}
+};
 
 
 
