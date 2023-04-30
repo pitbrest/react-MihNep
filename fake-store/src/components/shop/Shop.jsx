@@ -10,8 +10,6 @@ function Shop() {
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState([]);
 
-  const checkOrder = (id) => order.filter(item => item.id === id).length;
-
   const addItemToOrder = (prop) => {
     const { id, url, title, description, price } = prop;
     const newOrderItem = {
@@ -45,7 +43,7 @@ function Shop() {
         description={item.displayDescription}
         price={item.price.finalPrice}
         addItemToOrder={addItemToOrder}
-        checkOrder={checkOrder}
+        order={order}
       />
     ));
 
