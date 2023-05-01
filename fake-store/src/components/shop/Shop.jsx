@@ -4,11 +4,13 @@ import getDailyShop from "../../FortniteApi/fortniteApi";
 import Preloader from "../Preloader";
 import GoodItem from "../goodItem/GoodItem";
 import Basket from "../basket/Basket";
+import BasketList from "../basket/Basket-list";
 
 function Shop() {
   const [goods, setGoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState([]);
+  const [busketStatus, setBusketStatus] = useState(false);
 
   const addItemToOrder = (prop) => {
     const { id, url, title, description, price } = prop;
@@ -33,6 +35,17 @@ function Shop() {
       setOrder([...order, newOrderItem]);
     }
   };
+
+  const basketStatusHandler = () => {
+    setBusketStatus(!busketStatus);
+  };
+
+  const bodyOverflowHandler = () => {
+    busketStatus ? document.body.style.overflow = 'hidden' : null;
+  };
+  bodyOverflowHandler();
+
+
 
   const content = !goods.length ? <h3>Nothing here ...</h3> :
     goods.map((item) => (
@@ -59,12 +72,17 @@ function Shop() {
 
 
   return (
-    <>
-      {isLoading ? null : <Basket quantity={order.length} />}
+    <div className="shop-content">
+      {isLoading ? null : <Basket quantity={order.length}
+        basketStatusHandler={basketStatusHandler} />}
+      {busketStatus ?
+        <BasketList
+          order={order}
+          basketStatusHandler={basketStatusHandler} /> : null}
       <main className='container shop-container'>
         {isLoading ? <Preloader /> : content}
       </main>
-    </>
+    </div>
 
   );
 };

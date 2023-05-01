@@ -8,15 +8,40 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  cursor: pointer;
 }
-
 .cart-quantity {
   position: fixed;
   top: 5.5rem;
-  right: 2%;
+  right: 35px;
   font-weight: 700;
   font-size: 1.3rem;
   padding-left: 20%;
   line-height: normal;
   min-height: 22px;
+  font-weight: 700;
+}
+
+/* basketList-container */
+
+.basketList-container {
+  background-color: rgb(240 246 245 / 97%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 50rem;
+  height: 50rem;
+  display: flex;
+  flex-direction: column;    
+}
+.basket-content {
+  overflow-y: auto;
+}
+.close-icon {
+  padding: 1rem;
+  align-self: end;
+  font-size: 3rem;
+  cursor: pointer;  
 }

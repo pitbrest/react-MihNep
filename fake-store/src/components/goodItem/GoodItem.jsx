@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import './GoodItem.css';
 
 function GoodItem(props) {
-  const { id, url, title, description, price, addItemToOrder, order } = props;
+  const { id, url, title, description, price, addItemToOrder, order = [] } = props;
 
   const btnStatus = order.filter(item => item.id === id).length;
 
@@ -39,7 +39,7 @@ GoodItem.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   addItemToOrder: PropTypes.func.isRequired,
-  order: PropTypes.arrayOf.isRequired
+  order: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default GoodItem;
