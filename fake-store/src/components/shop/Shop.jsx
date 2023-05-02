@@ -41,17 +41,19 @@ function Shop() {
   };
 
   const bodyOverflowHandler = () => {
-    busketStatus ? document.body.style.overflow = 'hidden' : null;
+    if (busketStatus) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   };
   bodyOverflowHandler();
 
-
-
   const content = !goods.length ? <h3>Nothing here ...</h3> :
-    goods.map((item) => (
+    goods.filter(i => i.mainId).map((item) => (
       <GoodItem key={item.mainId}
         id={item.mainId}
-        url={item.displayAssets[0].background}
+        url={item.displayAssets.length ? item.displayAssets[0].background : 'https://imgholder.ru/300x300/46CDCF/000&text=Image+not+found&font=kelson'}
         title={item.displayName}
         description={item.displayDescription}
         price={item.price.finalPrice}
@@ -83,10 +85,6 @@ function Shop() {
         {isLoading ? <Preloader /> : content}
       </main>
     </div>
-
   );
-};
-
-
-
+}
 export default Shop;
