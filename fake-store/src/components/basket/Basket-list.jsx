@@ -5,7 +5,6 @@ function BasketList(props) {
   const { order, basketStatusHandler } = props;
 
   const totalPrice = order.reduce((acc, item) => item.price * item.quantity + acc, 0);
-  console.log(order, totalPrice);
 
   return (
     <div className='basketList-container'>
@@ -15,7 +14,9 @@ function BasketList(props) {
         role='button'
         tabIndex={0}>close</div>
       <ul className="basket-content collection">
-        {order ? order.map(item => <BasketItem key={item.id} {...item} />) : 'Ваша корзина пуста'}
+        {order ? order.map(item => <BasketItem
+          key={item.id}
+          {...item} />) : 'Ваша корзина пуста'}
       </ul>
       <div className="basket-totalInfo">Ваш заказ: <span>{totalPrice}</span> руб</div>
     </div>
@@ -24,7 +25,8 @@ function BasketList(props) {
 
 BasketList.propTypes = {
   order: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  basketStatusHandler: PropTypes.func.isRequired
+  basketStatusHandler: PropTypes.func.isRequired,
+  deleteOrderItem: PropTypes.func.isRequired
 };
 
 export default BasketList;

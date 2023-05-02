@@ -31,8 +31,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  width: 50rem;
-  height: 50rem;
+  max-width: 50rem;
+  width: 100%;
+  max-height: 50rem;
   display: flex;
   flex-direction: column;    
 }
@@ -44,4 +45,10 @@
   align-self: end;
   font-size: 3rem;
   cursor: pointer;  
+}
+.emptyButton-remember {
+  padding: 0 14px;;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
 }

@@ -6,6 +6,9 @@
   flex-direction: column;   
   margin: 0;
 }
+.card img {
+  background-color: #e7e7e7;
+}
 .card .card-content {
   flex: 0 1 190px;
   padding: 10px;
@@ -17,7 +20,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.card .price{
+.card .price {
   font-size: 1.5rem; 
   font-weight: 700;
 }

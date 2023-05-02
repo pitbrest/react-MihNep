@@ -36,24 +36,19 @@ function Shop() {
     }
   };
 
+  const deleteOrderItem = (id) => {
+    setOrder(order.filter(item => item.id !== id));
+  };
+
   const basketStatusHandler = () => {
     setBusketStatus(!busketStatus);
   };
-
-  const bodyOverflowHandler = () => {
-    if (busketStatus) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  };
-  bodyOverflowHandler();
 
   const content = !goods.length ? <h3>Nothing here ...</h3> :
     goods.filter(i => i.mainId).map((item) => (
       <GoodItem key={item.mainId}
         id={item.mainId}
-        url={item.displayAssets.length ? item.displayAssets[0].background : 'https://imgholder.ru/300x300/46CDCF/000&text=Image+not+found&font=kelson'}
+        url={item.displayAssets.length ? item.displayAssets[0].url : 'https://imgholder.ru/300x300/46CDCF/000&text=Image+not+found&font=kelson'}
         title={item.displayName}
         description={item.displayDescription}
         price={item.price.finalPrice}
@@ -72,6 +67,14 @@ function Shop() {
       });
   }, []);
 
+  useEffect(() => {
+    if (busketStatus) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [busketStatus]);
+
 
   return (
     <div className="shop-content">
@@ -80,6 +83,7 @@ function Shop() {
       {busketStatus ?
         <BasketList
           order={order}
+
           basketStatusHandler={basketStatusHandler} /> : null}
       <main className='container shop-container'>
         {isLoading ? <Preloader /> : content}
