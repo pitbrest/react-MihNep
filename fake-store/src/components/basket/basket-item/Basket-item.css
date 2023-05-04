@@ -105,7 +105,7 @@
   transition: background-color .3s ease-in-out;
 }
 .count-handler:active {
-  background-color: #d4d4d4;
+  background-color: #bdbdbd;
   transition: background-color .3s ease-in-out;
 }
 .confirm-btn {
