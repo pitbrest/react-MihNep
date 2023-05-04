@@ -23,8 +23,17 @@
 }
 
 /* basketList-container */
-
+.modal-wrapper {
+  background-color: #c4d4cce8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
 .basketList-container {
+  z-index: 3;
   background-color: rgb(240 246 245 / 97%);
   position: fixed;
   top: 50%;

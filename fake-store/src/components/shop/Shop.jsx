@@ -20,8 +20,9 @@ function Shop() {
       url,
       title,
       description,
-      price,
+      price
     };
+
     const checkingOrder = order.filter(item => item.id === id).length;
 
     if (checkingOrder) {
@@ -38,6 +39,25 @@ function Shop() {
 
   const deleteOrderItem = (id) => {
     setOrder(order.filter(item => item.id !== id));
+  };
+
+  const orderItemCountHandler = (id, action) => {
+    if (action === 'inc') {
+      setOrder(order.map(item => {
+        const changedItem = item;
+        if (item.id === id) changedItem.quantity += 1;
+        return changedItem;
+      }));
+    } else {
+      const targetItem = order.filter(item => item.id === id);
+      if (targetItem[0].quantity !== 1) {
+        setOrder(order.map(item => {
+          const changedItem = item;
+          if (item.id === id) changedItem.quantity -= 1;
+          return changedItem;
+        }));
+      }
+    }
   };
 
   const basketStatusHandler = () => {
@@ -83,8 +103,9 @@ function Shop() {
       {busketStatus ?
         <BasketList
           order={order}
-
-          basketStatusHandler={basketStatusHandler} /> : null}
+          basketStatusHandler={basketStatusHandler}
+          deleteOrderItem={deleteOrderItem}
+          orderItemCountHandler={orderItemCountHandler} /> : null}
       <main className='container shop-container'>
         {isLoading ? <Preloader /> : content}
       </main>

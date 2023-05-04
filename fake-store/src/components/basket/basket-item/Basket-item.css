@@ -11,7 +11,7 @@
   -o-transition: background-color .3s ease-in-out;
 }
 .basketItem-container:hover {
-  background-color: #5a5a5a26;
+  background-color: #0ba27430;
   transition: background-color .3s ease-in-out;
   -webkit-transition: background-color .3s ease-in-out;
   -moz-transition: background-color .3s ease-in-out;
@@ -44,8 +44,8 @@
   gap: 0.5rem;
 }
 .itemCount-handler button {
-  background-color: lightgray;
-  border: 1px solid gray;
+  background-color: #f7f7f7;
+  border: 1px solid #acacac;
   border-radius: 3px;
   padding: 2px;  
 }
@@ -55,6 +55,10 @@
 }
 .item-quantity {
   margin: 0 5px;
+  width: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 .basket-totalInfo {
   padding: 2rem 1rem;
@@ -64,6 +68,7 @@
 .basket-totalInfo span {
   padding: 5px;
   font-weight: 700;
+  font-size: 1.4rem;
   color: tomato;
 }
 .itemHandler {
@@ -74,7 +79,36 @@
   gap: 1rem;  
 }
 .deleteItem-btn {
-  background-color: transparent;
-  border: none;
+  background-color: #fff9f8;
+  border: 1px solid #ea8e7e;
+  border-radius: 5px;
   padding: 5px 10px;
+  transition: background-color .3s ease-in-out;
+}
+.deleteItem-btn:hover {
+  background-color: rgb(255, 158, 141);
+  border: 1px solid tomato;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: background-color .3s ease-in-out;
+}
+.deleteItem-btn:focus {
+  background-color: tomato;
+  border: 1px solid tomato;  
+  transition: background-color .3s ease-in-out;
+}
+.count-handler {
+  transition: background-color .3s ease-in-out;
+}
+.count-handler:hover {
+  background-color: #e4e3e3;
+  transition: background-color .3s ease-in-out;
+}
+.count-handler:active {
+  background-color: #d4d4d4;
+  transition: background-color .3s ease-in-out;
+}
+.confirm-btn {
+  font-weight: 700;
+  letter-spacing: 1.5px;
 }

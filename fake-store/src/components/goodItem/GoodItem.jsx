@@ -21,7 +21,7 @@ function GoodItem(props) {
           <div className="card-action">
             <span className='price'>{price} руб</span>
             <button type='button'
-              className={btnStatus ? "btn red darken-4" : "btn"}
+              className={btnStatus ? "btn blue darken-3" : "btn"}
               onClick={() => {
                 addItemToOrder({ ...props });
               }} >Купить</button>
