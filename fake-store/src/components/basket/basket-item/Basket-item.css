@@ -22,16 +22,22 @@
   max-width: 60px;
   height: auto;  
   flex: 0 0 20%;
+  background-color: #f3f3f3;
 }
 .item-info {
   flex: 1 1 60%;
+}
+.item-title {
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 .item-description {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
 }
 .itemCount-handle {
   flex: 0 0 20%;
@@ -84,6 +90,7 @@
   border-radius: 5px;
   padding: 5px 10px;
   transition: background-color .3s ease-in-out;
+  cursor: pointer;
 }
 .deleteItem-btn:hover {
   background-color: rgb(255, 158, 141);
@@ -95,7 +102,7 @@
 .deleteItem-btn:focus {
   background-color: tomato;
   border: 1px solid tomato;  
-  transition: background-color .3s ease-in-out;
+  transition: background-color .3s ease-in-out;  
 }
 .count-handler {
   transition: background-color .3s ease-in-out;
@@ -103,6 +110,7 @@
 .count-handler:hover {
   background-color: #e4e3e3;
   transition: background-color .3s ease-in-out;
+  cursor: pointer;
 }
 .count-handler:active {
   background-color: #bdbdbd;

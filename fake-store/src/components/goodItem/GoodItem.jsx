@@ -1,10 +1,28 @@
 import PropTypes from 'prop-types';
 import './GoodItem.css';
+import { useState } from 'react';
 
 function GoodItem(props) {
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
   const { id, url, title, description, price, addItemToOrder, order = [] } = props;
 
   const btnStatus = order.filter(item => item.id === id).length;
+
+  const tooltipHandler = () => {
+    setIsTooltipVisible(true);
+    setTimeout(() => {
+      setIsTooltipVisible(false);
+    }, 1000);
+  };
+
+  const tooltipStyleObj = isTooltipVisible ? {
+    display: 'inline-block',
+    visibility: 'visible'
+  } : {
+    display: 'none',
+    visibility: 'hidden'
+  };
 
   return (
     <div className="row good-item hoverable">
@@ -24,7 +42,10 @@ function GoodItem(props) {
               className={btnStatus ? "btn blue darken-3" : "btn"}
               onClick={() => {
                 addItemToOrder({ ...props });
-              }} >Купить</button>
+                tooltipHandler();
+              }} >Купить
+            </button>
+            <span className="item-tooltip" style={tooltipStyleObj}>Товар добавлен в корзину</span>
           </div>
         </div>
       </div>
@@ -39,7 +60,7 @@ GoodItem.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   addItemToOrder: PropTypes.func.isRequired,
-  order: PropTypes.arrayOf(PropTypes.object).isRequired
+  order: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired
 };
 
 export default GoodItem;

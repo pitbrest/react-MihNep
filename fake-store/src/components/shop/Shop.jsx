@@ -95,7 +95,6 @@ function Shop() {
     }
   }, [busketStatus]);
 
-
   return (
     <div className="shop-content">
       {isLoading ? null : <Basket quantity={order.length}
@@ -112,4 +111,5 @@ function Shop() {
     </div>
   );
 }
+
 export default Shop;

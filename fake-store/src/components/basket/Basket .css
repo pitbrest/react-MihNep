@@ -22,7 +22,8 @@
   font-weight: 700;
 }
 
-/* basketList-container */
+  /* basketList-container */
+
 .modal-wrapper {
   background-color: #c4d4cce8;
   position: fixed;
@@ -44,7 +45,8 @@
   width: 100%;
   max-height: 50rem;
   display: flex;
-  flex-direction: column;    
+  flex-direction: column;   
+  animation: showBasket 400ms ease-in-out;
 }
 .basket-content {
   overflow-y: auto;
@@ -54,10 +56,26 @@
   align-self: end;
   font-size: 3rem;
   cursor: pointer;  
+  transition: transform 1000ms ease-in-out; 
+}
+.modal-wrapper .close-icon:hover {  
+  transform: rotate(180deg);
+  transition: transform 1000ms ease-in-out;  
 }
 .emptyButton-remember {
   padding: 0 14px;;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+@keyframes showBasket { 
+  from {
+    top: -100vh;
+    opacity: 20%;
+  }
+  to {
+    opacity: 1;
+    top: 50%;
+  }
 }
