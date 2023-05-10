@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { ShopContext } from '../../context/context';
 import './Basket .css';
 
-function Basket(props) {
-  const { quantity = 0, basketStatusHandler } = props;
+function Basket() {
+  const { basketStatusHandler, order } = useContext(ShopContext);
 
   return (
     <div className='basket-container right'
@@ -10,15 +11,10 @@ function Basket(props) {
       onKeyDown={() => { }}
       role='button'
       tabIndex={0}>
-      {quantity ? <span className="dark-text cart-quantity">{quantity}</span> : null}
+      {order.length ? <span className="dark-text cart-quantity">{order.length}</span> : null}
       <i className="material-icons medium blue-grey-text text-darken-2 right basket">shopping_cart </i>
     </div>
   );
 }
-
-Basket.propTypes = {
-  quantity: PropTypes.number.isRequired,
-  basketStatusHandler: PropTypes.func.isRequired
-};
 
 export default Basket;

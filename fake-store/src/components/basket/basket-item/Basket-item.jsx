@@ -20,10 +20,12 @@ function BasketItem(prop) {
         <div className="itemCount-handler">
           <button
             className='material-icons count-handler' type='button'
-            onClick={() => orderItemCountHandler(id, 'dec')}>chevron_left</button>
+            onClick={() => orderItemCountHandler(id, 'dec')}>chevron_left
+          </button>
           <span className='item-quantity'>{quantity}</span>
           <button className='material-icons count-handler' type='button'
-            onClick={() => orderItemCountHandler(id, 'inc')}>chevron_right</button>
+            onClick={() => orderItemCountHandler(id, 'inc')}>chevron_right
+          </button>
         </div>
         <button className='deleteItem-btn' type='button'
           onClick={() => deleteOrderItem(id)}
