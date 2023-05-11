@@ -61,33 +61,36 @@ export default function reducer(state, action) {
     }
 
     case 'Order_Item_Count_Handler': {
-      console.log(payload);
+      const currentItem = state.order.filter(
+        (item) => item.id === payload.id,
+      )[0];
 
-      const newOrder = state.order.map((item) => {
-        const changedItem = item;
-        if (changedItem.id === payload.id) {
-          changedItem.quantity -= 1;
+      let supportOrder = [...state.order];
+
+      if (payload.action === 'dec') {
+        if (currentItem.quantity !== 1) {
+          supportOrder = supportOrder.map((item) => {
+            const changingItem = { ...item };
+            if (changingItem.id === payload.id) {
+              changingItem.quantity -= 1;
+            }
+            return changingItem;
+          });
         }
-        return changedItem;
-      });
-      return {
-        ...state,
-        order: newOrder,
-      };
-    }
+      }
 
-    // const targetItem = state.order.filter((item) => item.id === payload.id);
-    // if (targetItem[0].quantity !== 1) {
-    //   newState = {
-    //     ...state,
-    //     order: state.order.map((item) => {
-    //       const changedItem = item;
-    //       if (item.id === payload.id) changedItem.quantity -= 1;
-    //       return changedItem;
-    //     }),
-    //   };
-    // }
-    // return { ...newState };
+      if (payload.action === 'inc') {
+        supportOrder = supportOrder.map((item) => {
+          const changingItem = { ...item };
+          if (changingItem.id === payload.id) {
+            changingItem.quantity += 1;
+          }
+          return changingItem;
+        });
+      }
+
+      return { ...state, order: supportOrder };
+    }
 
     default:
       return { ...state };
